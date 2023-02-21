@@ -35,7 +35,8 @@ const rateLimiting = async (req, res, next) => {
   const currentTime = Date.now();
 
   console.log(currentTime - previousAccessTime);
-  if (currentTime - previousAccessTime < 5000) {
+  //1reuqest / 2 sec
+  if (currentTime - previousAccessTime < 2000) {
     console.log("here");
     return res.send({
       status: 401,

@@ -1,7 +1,7 @@
 const express = require("express");
 const clc = require("cli-color");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const validator = require("validator");
 const session = require("express-session");
 const mongoDbSession = require("connect-mongodb-session")(session);
@@ -310,7 +310,7 @@ app.post("/create-item", isAuth, rateLimiting, async (req, res) => {
   }
 });
 
-app.post("/edit-item", isAuth, async (req, res) => {
+app.post("/edit-item", isAuth, rateLimiting, async (req, res) => {
   console.log(req.body);
   const id = req.body.id;
   const newData = req.body.newData;
@@ -494,3 +494,5 @@ app.listen(PORT, () => {
 //rate-limiting
 
 //Deployment
+
+//localhost <--> github <---> railway
